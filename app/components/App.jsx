@@ -27,10 +27,6 @@ export default class App extends React.Component {
 	}
 
 	updateNote = (id, task) => {
-		if (!task.trim()) {
-			return;
-		}
-
 		this.props.dispatch(updateNote({ id, task, editing: false }));
 	}
 
