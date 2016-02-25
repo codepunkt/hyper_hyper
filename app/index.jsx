@@ -10,9 +10,9 @@ import App from './components/App';
 
 const store = createStore(rootReducer, {
 	notes: [
-		{ id: uuid.v4(), task: 'Learn Webpack' },
-		{ id: uuid.v4(), task: 'Learn React' },
-		{ id: uuid.v4(), task: 'Drink a beer' }
+		{ id: uuid.v4(), editing: false, task: 'Learn Webpack' },
+		{ id: uuid.v4(), editing: false, task: 'Learn React' },
+		{ id: uuid.v4(), editing: false, task: 'Drink a beer' }
 	]
 }, compose(
 	window.devToolsExtension ? window.devToolsExtension() : undefined

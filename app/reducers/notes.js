@@ -1,4 +1,5 @@
 import * as types from '../actions/notes';
+import { omit } from 'lodash';
 
 const initialState = [];
 
@@ -10,9 +11,7 @@ export default function notes (state = initialState, action) {
 		case types.UPDATE_NOTE:
 			return state.map(note => {
 				if (note.id === action.id) {
-					// @todo don't assign `action` as it has `type`.
-					// assign only note-related props.
-					return Object.assign({}, note, action);
+					return Object.assign({}, note, omit(action, 'type'));
 				}
 
 				return note;

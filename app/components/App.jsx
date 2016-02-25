@@ -16,25 +16,29 @@ export default class App extends React.Component {
 				<Notes
 					notes={notes}
 					onEdit={this.updateNote}
+					onNoteClick={this.onNoteClick}
 					onDelete={this.deleteNote} />
 			</div>
 		);
 	}
 
 	createNote = () => {
-		this.props.dispatch(createNote({ task: 'New task' }));
+		this.props.dispatch(createNote({ task: '', editing: true }));
 	}
 
-	// todo: understand, why the example code adds editing: true/false to the note
 	updateNote = (id, task) => {
 		if (!task.trim()) {
 			return;
 		}
 
-		this.props.dispatch(updateNote({ id, task }));
+		this.props.dispatch(updateNote({ id, task, editing: false }));
 	}
 
 	deleteNote = (id) => {
 		this.props.dispatch(deleteNote(id));
+	}
+
+	onNoteClick = (id) => {
+		this.props.dispatch(updateNote({ id, editing: true }));
 	}
 }
