@@ -5,8 +5,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
+import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 import rootReducer from './reducers';
 import App from './components/App';
+import Layout from './components/Layout';
 
 const store = createStore(rootReducer, {
 	notes: [
@@ -20,7 +22,12 @@ const store = createStore(rootReducer, {
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<Router history={browserHistory}>
+			<Route path="/" component={Layout}>
+				<IndexRoute component={App} />
+			</Route>
+			<Redirect from="*" to="/" />
+		</Router>
 	</Provider>,
 	document.querySelector('.app')
 );
